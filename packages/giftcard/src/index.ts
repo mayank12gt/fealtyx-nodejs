@@ -173,3 +173,4 @@ function sanitizeDomain(input: string): { result: string; error: Error | null } 
     
     return { result: domain, error: null };
 }// test change
+// bump for initial release
