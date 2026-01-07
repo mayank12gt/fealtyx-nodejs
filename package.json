@@ -1,12 +1,20 @@
 {
   "name": "@mayank-org/fealtyx-sdk-node",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
      "test": "jest",
         "test:watch": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mayank12gt/fealtyx-nodejs"
+  },
+  "homepage": "https://github.com/mayank12gt/fealtyx-nodejs",
+  "bugs": {
+    "url": "https://github.com/mayank12gt/fealtyx-nodejs/issues"
   },
   "files": [
     "dist"
