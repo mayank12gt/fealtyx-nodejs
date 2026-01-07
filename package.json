@@ -1,32 +1,10 @@
 {
-  "name": "@mayank-org/fealtyx-sdk-node",
-  "version": "1.0.3",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "build": "tsc",
-     "test": "jest",
-        "test:watch": "jest --watch"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mayank12gt/fealtyx-nodejs"
-  },
-  "homepage": "https://github.com/mayank12gt/fealtyx-nodejs",
-  "bugs": {
-    "url": "https://github.com/mayank12gt/fealtyx-nodejs/issues"
-  },
-  "files": [
-    "dist"
+  "name": "fealtyx-nodejs",
+  "private": true,
+  "workspaces": [
+    "packages/*"
   ],
-  "type": "module",
-  "dependencies": {
-    "crypto": "^1.0.1"
-  },
   "devDependencies": {
-    "@types/jest": "^30.0.0",
-    "@types/node": "^24.10.0",
-    "jest": "^30.2.0",
-    "ts-jest": "^29.4.5"
+    "@changesets/cli": "^2.29.8"
   }
 }
