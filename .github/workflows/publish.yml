@@ -32,6 +32,9 @@ jobs:
       # 🔹 INSTALL DEPENDENCIES (npm)
       - name: Install dependencies
         run: npm ci
+      
+      - name: Build packages
+        run: npm run build
 
       # 🔹 STEP 1: VERSION (Changesets)
       - name: Version packages
