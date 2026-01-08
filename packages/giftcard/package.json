@@ -1,6 +1,9 @@
 {
   "name": "@mayank-org/fealtyx-sdk-node",
   "version": "2.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
