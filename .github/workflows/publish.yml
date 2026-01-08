@@ -1,24 +1,64 @@
-name: Publish Package
+name: Manual Release (Changesets)
 
 on:
-  release:
-    types: [published]
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Branch to publish from"
+        required: true
+        default: "main"
 
 permissions:
-  id-token: write  # Required for OIDC
-  contents: read
+  contents: write
+  packages: write
 
 jobs:
-  publish:
+  release:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+    steps:
+      - name: Checkout selected branch
+        uses: actions/checkout@v4
         with:
-          node-version: '24'
-          registry-url: 'https://registry.npmjs.org'
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: npm test
-      - run: npm publish
+          ref: ${{ inputs.branch }}
+          fetch-depth: 0   # REQUIRED so tags & history exist
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # 🔹 STEP 1: VERSION
+      - name: Version packages
+        run: pnpm changeset version
+
+      # 🔹 STEP 2: COMMIT VERSION CHANGES
+      - name: Commit version bumps
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          # If no changes, exit cleanly
+          if git diff --quiet; then
+            echo "No version changes to commit"
+            exit 0
+          fi
+
+          git add .
+          git commit -m "chore: release"
+          git push origin HEAD:${{ inputs.branch }}
+
+      # 🔹 STEP 3: PUBLISH
+      - name: Publish packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: pnpm changeset publish
