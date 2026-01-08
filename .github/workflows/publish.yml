@@ -36,6 +36,8 @@ jobs:
       # 🔹 STEP 1: VERSION (Changesets)
       - name: Version packages
         run: npx changeset version
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
 
       # 🔹 STEP 2: COMMIT VERSION CHANGES
       - name: Commit version bumps
