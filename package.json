@@ -1,6 +1,9 @@
 {
   "name": "fealtyx-nodejs",
   "private": true,
+  "scripts": {
+  "build": "npm run build --workspaces"
+  },
   "workspaces": [
     "packages/*"
   ],
