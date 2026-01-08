@@ -1,4 +1,4 @@
-name: Manual Release (Changesets)
+name: Manual Release (Changesets - npm)
 
 on:
   workflow_dispatch:
@@ -29,17 +29,13 @@ jobs:
           node-version: 20
           registry-url: https://registry.npmjs.org
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-
+      # 🔹 INSTALL DEPENDENCIES (npm)
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
-      # 🔹 STEP 1: VERSION
+      # 🔹 STEP 1: VERSION (Changesets)
       - name: Version packages
-        run: pnpm changeset version
+        run: npx changeset version
 
       # 🔹 STEP 2: COMMIT VERSION CHANGES
       - name: Commit version bumps
@@ -47,7 +43,6 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
-          # If no changes, exit cleanly
           if git diff --quiet; then
             echo "No version changes to commit"
             exit 0
@@ -57,8 +52,8 @@ jobs:
           git commit -m "chore: release"
           git push origin HEAD:${{ inputs.branch }}
 
-      # 🔹 STEP 3: PUBLISH
+      # 🔹 STEP 3: PUBLISH (npm)
       - name: Publish packages
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: pnpm changeset publish
+        run: npx changeset publish
