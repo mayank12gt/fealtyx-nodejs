@@ -1,5 +1,11 @@
 # @mayank-org/fealtyx-sdk-node
 
+## 3.0.0
+
+### Major Changes
+
+- [`32535d4`](https://github.com/mayank12gt/fealtyx-nodejs/commit/32535d4eabc386a4ae334e950cf54b910a66a6b5) Thanks [@mayank12gt](https://github.com/mayank12gt)! - test dist
+
 ## 2.1.0
 
 ### Minor Changes
