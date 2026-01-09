@@ -10,7 +10,7 @@ describe('validateGiftCardCode', () => {
         giftCardCode: string;
         orderAmount: number;
         is_applicable: boolean;
-        is_fealtyx_discount_code: boolean;
+        is_unloq_discount_code: boolean;
         reason: Reason | null;
     }
 
@@ -22,7 +22,7 @@ describe('validateGiftCardCode', () => {
             giftCardCode: "FLX1234ABCD",
             orderAmount: 100.0,
             is_applicable: true,
-            is_fealtyx_discount_code: false,
+            is_unloq_discount_code: false,
             reason: null
         },
         {
@@ -32,7 +32,7 @@ describe('validateGiftCardCode', () => {
             giftCardCode: "123415EG",
             orderAmount: 100.0,
             is_applicable: true,
-            is_fealtyx_discount_code: false,
+            is_unloq_discount_code: false,
             reason: null
         },
         {
@@ -42,7 +42,7 @@ describe('validateGiftCardCode', () => {
             giftCardCode: "FL1",
             orderAmount: 100.0,
             is_applicable: true,
-            is_fealtyx_discount_code: false,
+            is_unloq_discount_code: false,
             reason: null
         },
         {
@@ -52,7 +52,7 @@ describe('validateGiftCardCode', () => {
             giftCardCode: "FLX123415EG",
             orderAmount: 100.0,
             is_applicable: false,
-            is_fealtyx_discount_code: true,
+            is_unloq_discount_code: true,
             reason: Reason.VoucherNotEligible
         },
         {
@@ -62,7 +62,7 @@ describe('validateGiftCardCode', () => {
             giftCardCode: "FLX123415EG",
             orderAmount: 100.0,
             is_applicable: false,
-            is_fealtyx_discount_code: true,
+            is_unloq_discount_code: true,
             reason: Reason.VoucherNotEligible
         },
         {
@@ -72,7 +72,7 @@ describe('validateGiftCardCode', () => {
             giftCardCode: "FLX123415EG",
             orderAmount: 100.0,
             is_applicable: true,
-            is_fealtyx_discount_code: true,
+            is_unloq_discount_code: true,
             reason: null
         },
         {
@@ -82,7 +82,7 @@ describe('validateGiftCardCode', () => {
             giftCardCode: "UNQ123415EG",
             orderAmount: 100.0,
             is_applicable: true,
-            is_fealtyx_discount_code: true,
+            is_unloq_discount_code: true,
             reason: null
         },
         {
@@ -92,7 +92,7 @@ describe('validateGiftCardCode', () => {
             giftCardCode: "FLX123415EG",
             orderAmount: 100.0,
             is_applicable: true,
-            is_fealtyx_discount_code: true,
+            is_unloq_discount_code: true,
             reason: null
         },
         {
@@ -102,7 +102,7 @@ describe('validateGiftCardCode', () => {
             giftCardCode: "FLX123415EG",
             orderAmount: 100.0,
             is_applicable: true,
-            is_fealtyx_discount_code: true,
+            is_unloq_discount_code: true,
             reason: null
         },
         {
@@ -112,7 +112,7 @@ describe('validateGiftCardCode', () => {
             giftCardCode: "FLX123415EG",
             orderAmount: 0,
             is_applicable: true,
-            is_fealtyx_discount_code: true,
+            is_unloq_discount_code: true,
             reason: null
         },
         {
@@ -122,7 +122,7 @@ describe('validateGiftCardCode', () => {
             giftCardCode: "FLX123415EG",
             orderAmount: 100.0,
             is_applicable: false,
-            is_fealtyx_discount_code: true,
+            is_unloq_discount_code: true,
             reason: Reason.InvalidDomain
         },
         {
@@ -132,7 +132,7 @@ describe('validateGiftCardCode', () => {
             giftCardCode: "FLX123415EG",
             orderAmount: 100.0,
             is_applicable: false,
-            is_fealtyx_discount_code: true,
+            is_unloq_discount_code: true,
             reason: Reason.InvalidDomain
         },
         {
@@ -142,7 +142,7 @@ describe('validateGiftCardCode', () => {
             giftCardCode: "ABCD1234EFGH",
             orderAmount: 100.0,
             is_applicable: true,
-            is_fealtyx_discount_code: false,
+            is_unloq_discount_code: false,
             reason: null
         },
     ];
@@ -157,7 +157,7 @@ describe('validateGiftCardCode', () => {
             );
             
             expect(result.is_applicable).toBe(testCase.is_applicable);
-            expect(result.is_fealtyx_discount_code).toBe(testCase.is_fealtyx_discount_code);
+            expect(result.is_unloq_discount_code).toBe(testCase.is_unloq_discount_code);
             
             // Handle both string and Reason enum comparison
             if (testCase.reason === null) {

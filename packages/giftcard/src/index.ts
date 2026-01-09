@@ -4,7 +4,7 @@ import { hexCharToByte } from "./utils/string";
 
 export type ValidationResult = {
   is_applicable: boolean;
-  is_fealtyx_discount_code: boolean;
+  is_unloq_discount_code: boolean;
   reason: Reason | null;
 };
 
@@ -22,7 +22,7 @@ export function validateUnloqDiscountCode(
   if (!giftCardCode || giftCardCode.length < 4) {
     return {
       is_applicable: true,
-      is_fealtyx_discount_code: false,
+      is_unloq_discount_code: false,
       reason: null,
     };
   }
@@ -31,7 +31,7 @@ export function validateUnloqDiscountCode(
   if (!giftCardCode.startsWith("flx") && !giftCardCode.startsWith("unq")) {
     return {
       is_applicable: true,
-      is_fealtyx_discount_code: false,
+      is_unloq_discount_code: false,
       reason: null,
     };
   }
@@ -41,7 +41,7 @@ export function validateUnloqDiscountCode(
   if (last4.length !== 4) {
     return {
       is_applicable: true,
-      is_fealtyx_discount_code: false,
+      is_unloq_discount_code: false,
       reason: null,
     };
   }
@@ -55,7 +55,7 @@ export function validateUnloqDiscountCode(
     // If the last 2 don't match the expected pattern, the gift card is not a Fealtyx gift card
     return {
       is_applicable: true,
-      is_fealtyx_discount_code: false,
+      is_unloq_discount_code: false,
       reason: null,
     };
   }
@@ -65,7 +65,7 @@ export function validateUnloqDiscountCode(
   if (err !== null) {
     return {
       is_applicable: false,
-      is_fealtyx_discount_code: true,
+      is_unloq_discount_code: true,
       reason: Reason.InvalidDomain,
     };
   }
@@ -78,14 +78,14 @@ export function validateUnloqDiscountCode(
   if (!valid) {
     return {
       is_applicable: false,
-      is_fealtyx_discount_code: true,
+      is_unloq_discount_code: true,
       reason: Reason.VoucherNotEligible,
     };
   }
 
   return {
     is_applicable: true,
-    is_fealtyx_discount_code: true,
+    is_unloq_discount_code: true,
     reason: null,
   };
 }
